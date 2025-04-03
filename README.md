@@ -11,3 +11,8 @@ For now, I’ve pushed the current state to GitHub to document my process and ma
 I’ve done my best and learned a lot during the process.
 
 With Regards
+![image](https://github.com/user-attachments/assets/cc3455e5-6f7d-4943-b57d-e09742bbe5b7)
+![image](https://github.com/user-attachments/assets/0427f142-fe4d-42b5-bf9a-193bbc286e19)
+![image](https://github.com/user-attachments/assets/20e8dabb-4492-4a7a-abb2-1fe8eb8e8aff)
+![image](https://github.com/user-attachments/assets/66ea0948-cfa4-4305-8d3e-8ca95092b1e2)
+![image](https://github.com/user-attachments/assets/aa3929eb-08c0-4244-8ead-7d53cb8c5474)
