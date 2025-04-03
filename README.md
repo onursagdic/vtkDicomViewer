@@ -16,3 +16,10 @@ With Regards
 ![image](https://github.com/user-attachments/assets/20e8dabb-4492-4a7a-abb2-1fe8eb8e8aff)
 ![image](https://github.com/user-attachments/assets/66ea0948-cfa4-4305-8d3e-8ca95092b1e2)
 ![image](https://github.com/user-attachments/assets/aa3929eb-08c0-4244-8ead-7d53cb8c5474)
+
+
+VTK v9.1.0
+GDCM v3.0.10
+CMake v3.23.0
+Qt v5.15.2
+Visual Studio 2019 x64
