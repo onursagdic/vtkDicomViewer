@@ -1,0 +1,81 @@
+cmake_minimum_required(VERSION 3.14)
+project(DicomVtkViewerAkgun VERSION 1.0.0 LANGUAGES CXX)
+
+# C++17 standardını kullan
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Qt için gerekli ayarlar
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+
+# Derleme tipi Release olarak ayarla (Debug veya Release olabilir)
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
+
+# Qt5 bileşenlerini bul
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
+
+# VTK ve GDCM kütüphanelerini bul
+find_package(VTK REQUIRED)
+find_package(GDCM REQUIRED)
+
+# Include dizinlerini ekle
+include(${VTK_USE_FILE})
+include(${GDCM_USE_FILE})
+
+# Kaynak dosyaları (ana dizinde olduğunu varsayıyoruz)
+set(SOURCES
+    main.cpp
+    mainwindow.cpp
+    dicomviewer.cpp
+    measurementwidget.cpp
+)
+
+# Header dosyaları
+set(HEADERS
+    mainwindow.h
+    dicomviewer.h
+    measurementwidget.h
+)
+
+# UI dosyaları
+set(UI_FILES
+    mainwindow.ui
+)
+
+# Executable oluşturma
+add_executable(DicomVtkViewerAkgun ${SOURCES} ${HEADERS} ${UI_FILES})
+
+# Include dizinlerini hedef için ekle
+target_include_directories(DicomVtkViewerAkgun PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+# Kütüphaneleri bağla
+target_link_libraries(DicomVtkViewerAkgun PRIVATE
+    Qt5::Widgets
+    ${VTK_LIBRARIES}
+    ${GDCM_LIBRARIES}
+)
+
+# VTK module autoinit (yeni VTK sürümleri için)
+vtk_module_autoinit(
+    TARGETS DicomVtkViewerAkgun
+    MODULES ${VTK_LIBRARIES}
+)
+
+# Windows için .exe dosyası yanına DLL dosyalarını kopyalama
+if(WIN32)
+  add_custom_command(TARGET DicomVtkViewerAkgun POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    $<TARGET_FILE:Qt5::Core>
+    $<TARGET_FILE:Qt5::Widgets>
+    $<TARGET_FILE_DIR:DicomVtkViewerAkgun>
+  )
+endif()
+
+# Kurulum hedefi (isteğe bağlı)
+install(TARGETS DicomVtkViewerAkgun
+  RUNTIME DESTINATION bin
+)
